@@ -11,13 +11,18 @@ class PairControllers {
 
     //Mark: Properties
     static let shared = PairControllers()
-    var pairs: [String] = []
+    var members: [String] = []
     
     //MARK:CRUD
-    func createMembers(){
+    func createMembers(with name: String){
+        let _ = member(member: name)
+        saveToPersistence()
     }
     
-    func deleteMembers(){
+    func deleteMembers(member: Members){
+        guard let index = members.firstIndex(of: member) else {return}
+        members.remove(at: index)
+        saveToPersistence()
         
     }
     
